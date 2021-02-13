@@ -16,10 +16,6 @@ public class UserCreateRequest {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty(message = "Password cannot be empty")
-    @Size(min = 3)
-    private String password;
-
     @NotEmpty
     private String emailAddress;
 

@@ -1,4 +1,4 @@
-package com.bdg.service;
+package com.bdg.service.user;
 
 public interface UpdateSupported<ID,REQUEST,RESPONSE> {
 
