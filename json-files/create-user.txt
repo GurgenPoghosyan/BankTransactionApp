@@ -1,0 +1,7 @@
+http://localhost:8080/api/v1/user/create
+
+{
+  "firstName": "Gurgen",
+  "lastName": "Poghosyan",
+  "emailAddress": "poxosyan.gurgen@mail.ru"
+}
