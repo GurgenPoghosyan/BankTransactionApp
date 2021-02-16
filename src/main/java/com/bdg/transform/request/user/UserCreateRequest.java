@@ -18,7 +18,4 @@ public class UserCreateRequest {
 
     @NotEmpty
     private String emailAddress;
-
-    @NotNull
-    private RoleType roleType;
 }

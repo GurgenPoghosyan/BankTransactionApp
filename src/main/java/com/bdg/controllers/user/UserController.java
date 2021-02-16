@@ -1,16 +1,13 @@
-package com.bdg.endpoints.user;
+package com.bdg.controllers.user;
 
-import com.bdg.entity.user.User;
 import com.bdg.service.user.UserService;
 import com.bdg.transform.request.user.UserCreateRequest;
 import com.bdg.transform.request.user.UserUpdateRequest;
 import com.bdg.transform.response.user.UserResponse;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")

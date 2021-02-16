@@ -1,6 +1,8 @@
 package com.bdg.entity.user;
 
+import com.bdg.entity.bankaccount.BankAccount;
 import com.bdg.entity.role.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +36,9 @@ public class User {
 
     @ManyToMany
     private List<Role> roles=new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private BankAccount bankAccount;
 
     public void setRoles(List<Role> roles) {
         this.roles.clear();

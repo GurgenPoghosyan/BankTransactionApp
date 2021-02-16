@@ -30,6 +30,9 @@ public class BankAccountCard {
     @Column(name = "account_number", nullable = false)
     private String accountNumber;
 
+    @Column(name = "balance")
+    private double balance=5000;
+
     public BankAccountCard(String cardFirstName, String cardLastName, String cardNumber, String accountNumber) {
         this.cardFirstName = cardFirstName;
         this.cardLastName = cardLastName;

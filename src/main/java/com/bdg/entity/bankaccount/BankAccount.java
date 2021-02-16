@@ -2,6 +2,8 @@ package com.bdg.entity.bankaccount;
 
 import com.bdg.entity.role.Role;
 import com.bdg.entity.accountcard.BankAccountCard;
+import com.bdg.entity.transaction.Transaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +34,19 @@ public class BankAccount {
     @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @OneToMany
+    @ManyToMany
     private List<Role> roles=new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     private BankAccountCard bankAccountCard;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Transaction> transactions=new ArrayList<>();
+
+    public BankAccount(String firstName, String lastName, String emailAddress, BankAccountCard bankAccountCard) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.bankAccountCard = bankAccountCard;
+    }
 }

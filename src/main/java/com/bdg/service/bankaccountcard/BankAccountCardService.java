@@ -1,19 +1,19 @@
 package com.bdg.service.bankaccountcard;
 
 import com.bdg.entity.accountcard.BankAccountCard;
-import com.bdg.repository.bankusercard.BankUserCardRepository;
+import com.bdg.repository.bankaccountcard.BankAccountCardRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BankAccountCardService {
 
-    private final BankUserCardRepository bankUserCardRepository;
+    private final BankAccountCardRepository bankAccountCardRepository;
 
-    public BankAccountCardService(BankUserCardRepository bankUserCardRepository) {
-        this.bankUserCardRepository = bankUserCardRepository;
+    public BankAccountCardService(BankAccountCardRepository bankAccountCardRepository) {
+        this.bankAccountCardRepository = bankAccountCardRepository;
     }
 
     public BankAccountCard save(BankAccountCard bankAccountCard){
-        return bankUserCardRepository.save(bankAccountCard);
+        return bankAccountCardRepository.save(bankAccountCard);
     }
 }

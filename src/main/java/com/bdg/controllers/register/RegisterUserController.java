@@ -1,7 +1,7 @@
-package com.bdg.endpoints.register;
+package com.bdg.controllers.register;
 
 import com.bdg.service.bankaccount.BankAccountService;
-import com.bdg.transform.request.register.RegisterRequest;
+import com.bdg.transform.request.account.AccountCreateRequest;
 import com.bdg.transform.response.register.RegisterResponse;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,9 @@ public class RegisterUserController {
     }
 
     @PostMapping("/register")
-    public RegisterResponse registerUser(@RequestBody RegisterRequest registerRequest){
-        return bankAccountService.register(registerRequest);
+    public RegisterResponse registerUser(@RequestBody AccountCreateRequest accountCreateRequest){
+        return bankAccountService.register(accountCreateRequest);
     }
+
+
 }

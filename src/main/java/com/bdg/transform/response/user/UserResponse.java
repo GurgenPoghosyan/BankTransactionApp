@@ -1,6 +1,7 @@
 package com.bdg.transform.response.user;
 
 import com.bdg.common.enums.RoleType;
+import com.bdg.entity.bankaccount.BankAccount;
 import com.bdg.entity.role.Role;
 import lombok.Data;
 
@@ -17,5 +18,7 @@ public class UserResponse {
 
     private String emailAddress;
 
-    private List<RoleType> roles;
+    private BankAccount bankAccount;
+
+
 }
