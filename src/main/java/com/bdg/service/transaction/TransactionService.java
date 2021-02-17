@@ -2,13 +2,10 @@ package com.bdg.service.transaction;
 
 import com.bdg.common.enums.Status;
 import com.bdg.common.enums.TransactionType;
-import com.bdg.common.exception.AccountNotFoundException;
 import com.bdg.common.exception.BalanceNotAvailableException;
 import com.bdg.common.exception.UserNotFoundException;
-import com.bdg.entity.bankaccount.BankAccount;
 import com.bdg.entity.transaction.Transaction;
 import com.bdg.entity.user.User;
-import com.bdg.repository.bankaccount.BankAccountRepository;
 import com.bdg.repository.transaction.TransactionRepository;
 import com.bdg.repository.user.UserRepository;
 import com.bdg.service.bankaccount.BankAccountService;
@@ -17,6 +14,7 @@ import com.bdg.transform.request.account.AccountUpdateRequest;
 import com.bdg.transform.request.trannsaction.TransactionRequest;
 import com.bdg.transform.request.user.UserUpdateByAccountNumberRequest;
 import com.bdg.transform.response.transaction.TransactionResponse;
+import com.bdg.transform.response.transaction.TransactionsListResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +50,7 @@ public class TransactionService {
                 transactionRequest.getTransactionAmount(),
                 transactionRequest.getTransactionType());
         //--------------------------------------------------------------------
-        transaction.setStatus(Status.ACCEPTED);
+        transaction.setStatus(Status.APPROVED);
         Transaction savedTransaction = transactionRepository.save(transaction);
 
         owner.getBankAccount().getTransactions().add(savedTransaction);
@@ -67,7 +65,6 @@ public class TransactionService {
         return transactionResponse;
     }
 
-    @Transactional
     public void doTransaction(Long userId1, Long userId2, double amount, TransactionType transactionType) {
         if (transactionType == TransactionType.DEPOSIT) {
             User user1 = userRepository.findById(userId1).orElseThrow(() -> new UserNotFoundException(userId1));
@@ -93,5 +90,12 @@ public class TransactionService {
             BeanUtils.copyProperties(user2, updateRequest);
             userService.update(userId2, updateRequest);
         }
+    }
+
+    public TransactionsListResponse get(Long id) {
+        User user=userRepository.findById(id).orElseThrow(()->new UserNotFoundException(id));
+        TransactionsListResponse transactionsListResponse=new TransactionsListResponse();
+        transactionsListResponse.setTransactions(user.getBankAccount().getTransactions());
+        return transactionsListResponse;
     }
 }

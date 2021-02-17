@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private UserService userService;
@@ -19,22 +19,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public UserResponse addUser(@Valid @RequestBody UserCreateRequest addRequest){
         return userService.add(addRequest);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public UserResponse getUser(@PathVariable Long id){
         return userService.get(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public UserResponse updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequest updateRequest){
         return userService.update(id,updateRequest);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.ok().build();
